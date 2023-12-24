@@ -1,0 +1,24 @@
+.wrp {
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.ball {
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    backdrop-filter: blur(165px);
+    box-shadow: 0 64px 38px #ff000070;
+}

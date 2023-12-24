@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+
+  php-fpm:
+    container_name: '${COMPOSE_PROJECT_NAME}_php-fpm'
+    build: ./images/php-fpm
+    volumes:
+      - ${LOGS_PATH_SOURCE}:${LOGS_PATH_TARGET}
+      - ${WWW_PATH_SOURCE}:${WWW_PATH_TARGET}:cached
+
+  nginx:
+    container_name: '${COMPOSE_PROJECT_NAME}_nginx'
+    build: ./images/nginx
+    command: /bin/sh -c "mkdir -p /var/log/host/nginx && nginx -g 'daemon off;'"
+    volumes:
+      - ${LOGS_PATH_SOURCE}:${LOGS_PATH_TARGET}
+      - ${WWW_PATH_SOURCE}:${WWW_PATH_TARGET}:cached
+    depends_on:
+      - php-fpm
+    ports:
+      - '80:80'
+
+volumes:
+  postgres_data:
+    driver: local

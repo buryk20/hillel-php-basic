@@ -1,18 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="assets/main.css">
-</head>
-<body>
-<main data-wrp-main-page class="wrp">
-    <div data-ball class="ball"></div>
-    <?php
-    echo "<h1 class='title'>Hello world</h1>";
-    ?>
-</main>
+<?php
+do{
+    echo "Enter your name:\n";
+    $name = trim(fgets(STDIN));
 
-<script src="assets/index.js"></script>
-</body>
-</html>
+} while (empty($name));
+
+echo "Hello $name \n";
+echo "Have a good day $name \n";
+
+do{
+    echo "Enter your favorite number:\n";
+    $number = trim(fgets(STDIN));
+    echo "one digit again\n";
+    $numberSecond = trim(fgets(STDIN));
+
+} while (empty($number) && empty($numberSecond));
+
+$average = ($number + $numberSecond) / 2;
+$sum = $number + $numberSecond;
+
+echo "Sum: $sum \n Average: $average";

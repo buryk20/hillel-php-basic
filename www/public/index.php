@@ -14,7 +14,7 @@ do{
     echo "one digit again\n";
     $numberSecond = trim(fgets(STDIN));
 
-} while (empty($number) && empty($numberSecond));
+} while (empty($number) || empty($numberSecond));
 
 $average = ($number + $numberSecond) / 2;
 $sum = $number + $numberSecond;

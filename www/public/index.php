@@ -1,22 +1,47 @@
-<?php
-do{
-    echo "Enter your name:\n";
-    $name = trim(fgets(STDIN));
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrp-color-block {
+            width: 150px;
+            height: 50px;
 
-} while (empty($name));
+            display: flex;
 
-echo "Hello $name \n";
-echo "Have a good day $name \n";
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <?php
+    $color = 5;
 
-do{
-    echo "Enter your favorite number:\n";
-    $number = trim(fgets(STDIN));
-    echo "one digit again\n";
-    $numberSecond = trim(fgets(STDIN));
+    function determineColor($color)
+    {
+        return $color = match($color) {
+            1 => 'green',
+            2 => 'red',
+            3 => 'blue',
+            4 => 'brown',
+            5 => 'violet',
+            6 => 'black',
+            default => 'white'
+        };
+    }
+    ?>
 
-} while (empty($number) || empty($numberSecond));
+    <h1>Color: "<?=determineColor($color)?>" </h1>
+    <div class="wrp-color-block" style="background-color: <?=determineColor($color)?>">
 
-$average = ($number + $numberSecond) / 2;
-$sum = $number + $numberSecond;
+    </div>
+</main>
+</body>
+</html>
 
-echo "Sum: $sum \n Average: $average";
+

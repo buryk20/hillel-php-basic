@@ -17,6 +17,8 @@
     echo '</br>';
     var_dump('$arrayValue == $integerNumber', $arrayValue == $integerNumber);
     echo '</br>';
+    echo '</br>';
+    echo '</br>';
 
 
     echo "\nSensitive Comparison: </br>";

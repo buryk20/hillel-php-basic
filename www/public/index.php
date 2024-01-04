@@ -1,47 +1,32 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        .wrp-color-block {
-            width: 150px;
-            height: 50px;
 
-            display: flex;
+<?php
 
-            border: 1px solid black;
-        }
-    </style>
-</head>
-<body>
-<main>
-    <?php
-    $color = 5;
-
-    function determineColor($color)
-    {
-        return $color = match($color) {
-            1 => 'green',
-            2 => 'red',
-            3 => 'blue',
-            4 => 'brown',
-            5 => 'violet',
-            6 => 'black',
-            default => 'white'
-        };
-    }
-    ?>
-
-    <h1>Color: "<?=determineColor($color)?>" </h1>
-    <div class="wrp-color-block" style="background-color: <?=determineColor($color)?>">
-
-    </div>
-</main>
-</body>
-</html>
+    $integerNumber = 10;
+    $floatNumber = 10.0;
+    $stringValue = "10";
+    $booleanValue = true;
+    $arrayValue = [1, 2, 3];
 
 
+    echo "Nonsensitive Comparison: </br>";
+    var_dump('$integerNumber == $floatNumber', $integerNumber == $floatNumber);
+    echo '</br>';
+    var_dump('$stringValue == $integerNumber', $stringValue == $integerNumber);
+    echo '</br>';
+    var_dump('$booleanValue == $integerNumber', $booleanValue == $integerNumber);
+    echo '</br>';
+    var_dump('$arrayValue == $integerNumber', $arrayValue == $integerNumber);
+    echo '</br>';
+
+
+    echo "\nSensitive Comparison: </br>";
+    var_dump('$integerNumber === $floatNumber', $integerNumber === $floatNumber);
+    echo '</br>';
+    var_dump('$stringValue === $integerNumber', $stringValue === $integerNumber);
+    echo '</br>';
+    var_dump('$booleanValue === $integerNumber', $booleanValue === $integerNumber);
+    echo '</br>';
+    var_dump('$arrayValue === $integerNumber', $arrayValue === $integerNumber);
+    echo '</br>';
+
+?>

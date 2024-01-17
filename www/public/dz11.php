@@ -4,7 +4,7 @@ require_once('./index.php');
 $filePath =  APP_DIR . "/database/data.txt";
 $data = inputVal();
 
-function inputVal()
+function inputVal(): string
 {
     echo 'Введите данные' . PHP_EOL;
     $input = fgets(STDIN);
@@ -12,7 +12,7 @@ function inputVal()
     return $input;
 }
 
-function writeToFile($data, $filePath)
+function writeToFile(string $data, string $filePath)
 {
     $data = date("Y-m-d H:i:s") . ' ' . $data;
     file_put_contents($filePath, $data, FILE_APPEND);
@@ -20,7 +20,7 @@ function writeToFile($data, $filePath)
 
 //2. Написати іншу програму, яка виводить з файлу логу останні аргументи попередньої програми, які були введені.
 
-function outputData($filePath)
+function outputData(string $filePath): string
 {
     $lines = file($filePath, FILE_IGNORE_NEW_LINES);
     return end($lines);

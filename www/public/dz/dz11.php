@@ -14,7 +14,7 @@ function inputVal(): string
 
 function writeToFile(string $data, string $filePath)
 {
-    $data = date("Y-m-d H:i:s") . ' ' . $data;
+    $data = date("Y-m-d H:i:s") . ' dz11.php' . $data;
     file_put_contents($filePath, $data, FILE_APPEND);
 }
 

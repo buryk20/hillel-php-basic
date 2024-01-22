@@ -2,6 +2,9 @@
 require_once APP_DIR . '/vendor/autoload.php';
 require_once APP_DIR . '/class/ToDoList.php';
 
+$path = APP_DIR . '/file/toDoList.json';
+$toDoList = new ToDoList($path);
+
 $router = new \Bramus\Router\Router();
 
 $router->get('/', function() {
@@ -12,27 +15,44 @@ $router->get('/to-do-list', function() {
     include APP_DIR . '/path/to-do-list.php';
 });
 
-$router->post('/api/to-do-list', function() {
-    $data = json_decode(file_get_contents("php://input"), true);
-    $path = APP_DIR . '/file/toDoList.json';
 
-    // Проверяем, что данные присутствуют и имеют нужные ключи
+//Тут сделано на скорую руку, конечно можно реализовать это по красевее и более превельней
+$router->post('/api/to-do-list', function() use ($toDoList) {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+
     if (isset($data["title"]) && isset($data["priority"])) {
         $title = $data["title"];
         $priority = $data["priority"];
 
         // Создаем экземпляр класса ToDoList
-        $toDoList = new ToDoList($path);
+
 
         // Добавляем задачу
         $toDoList->addTask($title, $priority);
 
-        // Возвращаем какой-то ответ клиенту
-        echo "Данные успешно получены на сервере";
     } else {
-        // Возвращаем ошибку, если данные не соответствуют ожидаемым
-        http_response_code(400); // Bad Request
-        echo "Ошибка в данных запроса";
+        http_response_code(400);
+    }
+});
+
+$router->post('/api/to-do-list/del', function() use ($toDoList) {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (isset($data["id"])) {
+        $idToDelete = $data['id'];
+
+        // Удаляекм задачу
+        $toDoList->deleteTask($idToDelete);
+
+        header('Content-Type: application/json');
+        echo json_encode(['success' => true, 'message' => "Элемент успешно удален $idToDelete"]);
+        exit();
+    } else {
+        header('Content-Type: application/json');
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'Не удалось получить идентификатор из запроса']);
+        exit();
     }
 });
 

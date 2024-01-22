@@ -57,7 +57,7 @@ class ToDoList
     public function addTask($taskName, $priority)
     {
         $dataArray = $this->convertFileToArr($this->filePath);
-        $newTask = ['id' => random_int(0, 999), 'name' => $taskName, 'priority' => $priority, 'status' => 'не виконано'];
+        $newTask = ['id' => count($dataArray) + 1, 'name' => $taskName, 'priority' => $priority, 'status' => 'не виконано'];
         array_push($dataArray, $newTask);
         $this->saveToFile($dataArray, $this->filePath);
     }

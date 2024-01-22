@@ -2,6 +2,8 @@
 require_once '../system/constants.php';
 require_once APP_DIR . '/class/FileWriter.php';
 require_once APP_DIR . '/class/ToDoList.php';
+require_once APP_DIR . '/server/processing-request.php';
+require_once APP_DIR . '/router/router.php';
 
 $linkLogs = APP_DIR . '/logs/logs.txt';
 $linkFile = APP_DIR . '/file/toDoList.json';
@@ -18,5 +20,5 @@ try {
 } catch (Exception $e) {
     $fileWriter->writeToFileWith('Error: ' . $e->getMessage() . '. ' . 'Path to the file: ' . $linkFile);
 }
+?>
 
-$toDoList->addTask('dsfcdfvc1апм ап', '10');

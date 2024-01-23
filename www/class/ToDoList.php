@@ -54,11 +54,23 @@ class ToDoList
         }
     }
 
-    public function addTask($taskName, $priority)
+    public function addTask($taskName, $priority): void
     {
         $dataArray = $this->convertFileToArr($this->filePath);
         $newTask = ['id' => count($dataArray) + 1, 'name' => $taskName, 'priority' => $priority, 'status' => 'не виконано'];
         array_push($dataArray, $newTask);
         $this->saveToFile($dataArray, $this->filePath);
+    }
+
+    public function deleteTask(int $taskId): void
+    {
+        $dataArray = $this->convertFileToArr($this->filePath);
+        foreach ($dataArray as $key => $value) {
+            if($value['id'] === $taskId) {
+                unset($dataArray[$key]);
+                $this->saveToFile($dataArray, $this->filePath);
+                break;
+            }
+        }
     }
 }

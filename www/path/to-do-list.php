@@ -42,7 +42,7 @@ $dataArray = json_decode($jsonData, true);
         <?php
             if ($dataArray !== null) {
                 // Отрисовываем данные
-                echo '<table border="1">';
+                echo '<table class="table-wrp" border="1">';
                 echo '<tr><th>ID</th><th>Name</th><th>Priority</th><th>Status</th><th>Delete</th></tr>';
 
                 foreach ($dataArray as $item) {
@@ -60,6 +60,7 @@ $dataArray = json_decode($jsonData, true);
                 echo 'Ошибка декодирования JSON.';
             }
         ?>
+        <button class="sort-btn" data-btn-sort>Отсортировать по статусу</button>
     </main>
     <script type="module" src="./assets/index.js"></script>
 </body>

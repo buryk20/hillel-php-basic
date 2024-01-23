@@ -9,14 +9,6 @@ let statusChange = function () {
 
             let status = el.innerText ;
 
-            // if(el.innerText === status) {
-            //     status = 'виконано';
-            // } else {
-            //     status = 'не виконано';
-            // }
-
-            console.log(status);
-
             const requestOptions = {
                 method: 'POST',
                 headers: {
@@ -33,7 +25,7 @@ let statusChange = function () {
                 })
                 .then(data => {
                     console.log('Элемент успешно изменен:', data);
-                    // location.reload();
+                    location.reload();
                 })
                 .catch(error => {
                     console.error('Произошла ошибка:', error.message);

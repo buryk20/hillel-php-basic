@@ -6,3 +6,6 @@ delIItemList();
 
 import statusChange from './js/statusChange.js';
 statusChange();
+
+import sortStatus from './js/sortStatus.js';
+sortStatus();

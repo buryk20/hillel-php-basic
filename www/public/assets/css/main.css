@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 body {
-    max-width: 1440px;
+    max-width: 1280px;
     width: 100%;
 
     margin: 0 auto;
@@ -61,7 +61,7 @@ header {
     display: flex;
 }
 
-.form-btn {
+.form-btn, .sort-btn {
     max-width: 160px;
     width: 100%;
     height: 34px;
@@ -70,6 +70,10 @@ header {
 
     font-size: 18px;
     cursor: pointer;
+}
+
+.sort-btn {
+    max-width: 320px;
 }
 
 .form-wrp {
@@ -88,4 +92,8 @@ header {
     color: black;
 
     background-color: white;
+}
+
+.table-wrp {
+    margin-bottom: 24px;
 }

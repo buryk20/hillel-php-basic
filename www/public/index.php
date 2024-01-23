@@ -4,7 +4,7 @@ require_once APP_DIR . '/class/FileWriter.php';
 require_once APP_DIR . '/class/ToDoList.php';
 require_once APP_DIR . '/server/processing-request.php';
 require_once APP_DIR . '/router/router.php';
-require_once APP_DIR . '/path/home.php';
+//require_once APP_DIR . '/path/home.php';
 
 $linkLogs = APP_DIR . '/logs/logs.txt';
 $linkFile = APP_DIR . '/file/toDoList.json';
@@ -14,7 +14,6 @@ try {
 } catch (Exception $e) {
     echo 'Error: ' . $e->getMessage();
 }
-
 // Обрабатываю ошибку если файла по указанному пути нет, и записываю в логи
 try {
     $toDoList = new ToDoList($linkFile);

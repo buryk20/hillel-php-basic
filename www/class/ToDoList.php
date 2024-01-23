@@ -108,19 +108,25 @@ class ToDoList
 
         foreach($dataArray as &$value) {
             if($value['id'] === $taskId) {
-                match($status) {
-                    TaskStatus::COMPLETED => $value['status'] = TaskStatus::NOT_COMPLETED,
-                    TaskStatus::NOT_COMPLETED => $value['status'] = TaskStatus::COMPLETED,
-                    default => throw new Exception("Необработанный статус: $status"),
+//                ($status === TaskStatus::COMPLETED->value) ? TaskStatus::NOT_COMPLETED->value : TaskStatus::COMPLETED->value;
+                $value['status'] = match ($status) {
+                    TaskStatus::COMPLETED->value => TaskStatus::NOT_COMPLETED->value,
+                    default => TaskStatus::COMPLETED->value,
                 };
-                // if($status === TaskStatus::COMPLETED) {
-                //     $value['status'] = 'fgbftgb';
-                // } else {
-                //     $value['status'] = TaskStatus::COMPLETED;
-                // }
-
             }
         }
         $this->saveToFile($dataArray);
+    }
+
+    public function getTasks():void
+    {
+        $dataArray = $this->convertFileToArr($this->filePath);
+
+        usort($dataArray, function ($a, $b) {
+            return $b["priority"] - $a["priority"];
+        });
+
+        $this->saveToFile($dataArray);
+
     }
 }

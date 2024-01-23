@@ -1,4 +1,9 @@
 <?php
+require_once APP_DIR . '/class/ToDoList.php';
+$linkFile = APP_DIR . '/file/toDoList.json';
+$toDoList = new ToDoList($linkFile);
+
+$toDoList->statusChange('65afd7480cfd1', 'виконано');
 ?>
 <!DOCTYPE html>
 <html lang="en">

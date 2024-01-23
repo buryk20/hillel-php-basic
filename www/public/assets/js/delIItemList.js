@@ -5,8 +5,7 @@ let delIItemList = function () {
     btnArr.forEach((el, index) => {
         el.addEventListener('click', () => {
             const apiUrl = 'http://localhost/api/to-do-list/del';
-            const idToDelete = (idArr[index].getAttribute('data-id') * 1);
-            // let idToDelete = idArr[index] + 1;
+            const idToDelete = (idArr[index].getAttribute('data-id'));
             console.log(idToDelete);
 
             const requestOptions = {

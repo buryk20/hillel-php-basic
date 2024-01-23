@@ -3,3 +3,6 @@ formToDoList();
 
 import delIItemList from './js/delIItemList.js';
 delIItemList();
+
+import statusChange from './js/statusChange.js';
+statusChange();

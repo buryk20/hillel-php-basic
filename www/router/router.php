@@ -56,4 +56,26 @@ $router->post('/api/to-do-list/del', function() use ($toDoList) {
     }
 });
 
+$router->post('/api/to-do-list/status', function() use ($toDoList) {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    if (isset($data["id"])) {
+        $idToDelete = $data['id'];
+        $status =  $data['status'];
+
+        // Удаляекм задачу
+        $toDoList->statusChange($idToDelete, $status);
+
+        header('Content-Type: application/json');
+        echo json_encode(['success' => true, 'message' => "Элемент успешно удален $idToDelete"]);
+        exit();
+    } else {
+        header('Content-Type: application/json');
+        http_response_code(400);
+        echo json_encode(['success' => false, 'message' => 'Не удалось получить идентификатор из запроса']);
+        exit();
+    }
+});
+
+
 $router->run();

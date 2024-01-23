@@ -50,7 +50,7 @@ $dataArray = json_decode($jsonData, true);
                     echo "<td data-id={$item['id']} >" . $item['id'] . '</td>';
                     echo '<td>' . $item['name'] . '</td>';
                     echo '<td>' . $item['priority'] . '</td>';
-                    echo '<td>' . $item['status'] . '</td>';
+                    echo "<td class='btn-del' data-id-status>" . $item['status'] . '</td>';
                     echo '<td data-btn-del class="btn-del">' . 'Delete' . '</td>';
                     echo '</tr>';
                 }

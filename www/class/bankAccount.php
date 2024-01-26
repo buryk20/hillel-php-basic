@@ -5,7 +5,7 @@ class BankAccount
     private int $accountNumber;
     private float $balance;
 
-    public function __construct(int $accountNumber, $balance)
+    public function __construct(int $accountNumber,float $balance)
     {
         $this->setAccountNumber($accountNumber);
         $this->setBalance($balance);
@@ -36,6 +36,9 @@ class BankAccount
     //поповнення
     public function refill(float $newBalance): void
     {
+        if($newBalance < 0) {
+            throw new Exception('<br> Enter a value greater than 0 <br>');
+        }
         $refill = $this->getBalance() + $newBalance;
         $this->setBalance($refill);
     }
@@ -44,7 +47,7 @@ class BankAccount
     public function withdrawMoney(float $money): void
     {
         if($this->getBalance() < $money) {
-            throw new Exception(('<br> There are not enough funds for the operation'));
+            throw new Exception('<br> There are not enough funds for the operation');
         }
 
         $this->setBalance($this->getBalance() - $money);

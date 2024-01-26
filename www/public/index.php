@@ -23,12 +23,14 @@ try {
 
 $bankAccount = new BankAccount('123', '500');
 
-echo $bankAccount->refill(200);
-
-echo $bankAccount->getBalance();
+try {
+    $bankAccount->refill(-100);
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
 
 try {
-    echo $bankAccount->withdrawMoney(300);
+    $bankAccount->withdrawMoney(300);
 } catch(Exception $e) {
     echo $e->getMessage();
 }

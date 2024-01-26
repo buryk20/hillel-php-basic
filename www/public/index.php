@@ -5,6 +5,7 @@ require_once APP_DIR . '/class/ToDoList.php';
 require_once APP_DIR . '/server/processing-request.php';
 require_once APP_DIR . '/router/router.php';
 require_once APP_DIR . '/class/bankAccount.php';
+require_once APP_DIR . '/class/Text.php';
 
 $linkLogs = APP_DIR . '/logs/logs.txt';
 $linkFile = APP_DIR . '/file/toDoList.json';
@@ -35,4 +36,12 @@ try {
     echo $e->getMessage();
 }
 
-echo $bankAccount->getBalance();
+// echo $bankAccount->getBalance();
+
+$text = new Text();
+
+$text->print();
+
+$textNew = new CapsText();
+
+$textNew->print();

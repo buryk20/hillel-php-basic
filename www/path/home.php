@@ -12,6 +12,7 @@
     <?php require_once 'header.php'; ?>
     <main>
         <h1>Home page test</h1>
+
     </main>
     <script type="module" src="./assets/index.js"></script>
 </body>

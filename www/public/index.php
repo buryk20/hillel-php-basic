@@ -1,11 +1,17 @@
 <?php
+
 require_once '../system/constants.php';
+require_once APP_DIR . '/autoloader.php';
 require_once APP_DIR . '/class/FileWriter.php';
 require_once APP_DIR . '/class/ToDoList.php';
 require_once APP_DIR . '/server/processing-request.php';
 require_once APP_DIR . '/router/router.php';
 require_once APP_DIR . '/class/bankAccount.php';
 require_once APP_DIR . '/class/Text.php';
+
+require_once APP_DIR . '/class/abstract/Rectangle.php';
+require_once APP_DIR . '/class/abstract/Circle.php';
+
 
 $linkLogs = APP_DIR . '/logs/logs.txt';
 $linkFile = APP_DIR . '/file/toDoList.json';
@@ -36,12 +42,24 @@ try {
     echo $e->getMessage();
 }
 
-// echo $bankAccount->getBalance();
+try {
+    $rectangle = new Rectangle(10, 50);
+    echo $rectangle->getLength();
+    echo $rectangle->getWidth() . "</br>";
+    $rectangle->getArea();
+    echo "</br>";
+    $rectangle->getPerimeter();
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
 
-$text = new Text();
+try {
+    $circle = new Circle(20);
+    echo $circle->getRadius();
+    echo "</br>";
+    $circle->getPerimeter();
+    $circle->getArea();
+} catch(Exception $e) {
+    echo $e->getMessage();
+}
 
-$text->print();
-
-$textNew = new CapsText();
-
-$textNew->print();

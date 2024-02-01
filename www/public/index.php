@@ -12,6 +12,8 @@ require_once APP_DIR . '/class/Text.php';
 require_once APP_DIR . '/class/abstract/Rectangle.php';
 require_once APP_DIR . '/class/abstract/Circle.php';
 
+require_once APP_DIR . '/class/treats/Doo.php';
+require_once APP_DIR . '/class/treats/DooSec.php';
 
 $linkLogs = APP_DIR . '/logs/logs.txt';
 $linkFile = APP_DIR . '/file/toDoList.json';
@@ -30,36 +32,52 @@ try {
 
 $bankAccount = new BankAccount('123', '500');
 
+// try {
+//     $bankAccount->refill(-100);
+// } catch(Exception $e) {
+//     echo $e->getMessage();
+// }
+
+// try {
+//     $bankAccount->withdrawMoney(300);
+// } catch(Exception $e) {
+//     echo $e->getMessage();
+// }
+
+// try {
+//     $rectangle = new Rectangle(10, 50);
+//     echo $rectangle->getLength();
+//     echo $rectangle->getWidth() . "</br>";
+//     $rectangle->getArea();
+//     echo "</br>";
+//     $rectangle->getPerimeter();
+// } catch(Exception $e) {
+//     echo $e->getMessage();
+// }
+
+// try {
+//     $circle = new Circle(20);
+//     echo $circle->getRadius();
+//     echo "</br>";
+//     $circle->getPerimeter();
+//     $circle->getArea();
+// } catch(Exception $e) {
+//     echo $e->getMessage();
+// }
+
+
 try {
-    $bankAccount->refill(-100);
+    $doo = new Doo(10, 5);
+    $doo->multiplication();
 } catch(Exception $e) {
     echo $e->getMessage();
 }
 
+echo "</br>";
+
 try {
-    $bankAccount->withdrawMoney(300);
+    $dooSec = new DooSec(10, 5);
+    $dooSec->division();
 } catch(Exception $e) {
     echo $e->getMessage();
 }
-
-try {
-    $rectangle = new Rectangle(10, 50);
-    echo $rectangle->getLength();
-    echo $rectangle->getWidth() . "</br>";
-    $rectangle->getArea();
-    echo "</br>";
-    $rectangle->getPerimeter();
-} catch(Exception $e) {
-    echo $e->getMessage();
-}
-
-try {
-    $circle = new Circle(20);
-    echo $circle->getRadius();
-    echo "</br>";
-    $circle->getPerimeter();
-    $circle->getArea();
-} catch(Exception $e) {
-    echo $e->getMessage();
-}
-

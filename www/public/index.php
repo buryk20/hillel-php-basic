@@ -66,18 +66,18 @@ $bankAccount = new BankAccount('123', '500');
 // }
 
 
-try {
-    $doo = new Doo(10, 5);
-    $doo->multiplication();
-} catch(Exception $e) {
-    echo $e->getMessage();
-}
+// try {
+//     $doo = new Doo(10, 5);
+//     $doo->multiplication();
+// } catch(Exception $e) {
+//     echo $e->getMessage();
+// }
 
-echo "</br>";
+// echo "</br>";
 
-try {
-    $dooSec = new DooSec(10, 5);
-    $dooSec->division();
-} catch(Exception $e) {
-    echo $e->getMessage();
-}
+// try {
+//     $dooSec = new DooSec(10, 5);
+//     $dooSec->division();
+// } catch(Exception $e) {
+//     echo $e->getMessage();
+// }

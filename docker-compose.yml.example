@@ -9,6 +9,18 @@ services:
       - ${LOGS_PATH_SOURCE}:${LOGS_PATH_TARGET}
       - ${WWW_PATH_SOURCE}:${WWW_PATH_TARGET}:cached
 
+  postgres:
+    container_name: '${COMPOSE_PROJECT_NAME}_postgres'
+    build: ./images/postgres
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DATABASE=${POSTGRES_DATABASE}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
   nginx:
     container_name: '${COMPOSE_PROJECT_NAME}_nginx'
     build: ./images/nginx

@@ -1,6 +1,6 @@
 let formToDoList = function () {
     let btnForm = document.querySelector('[data-btn-form]');
-    if(!btnForm) {
+    if(btnForm) {
         btnForm.addEventListener('click', submitForm);
     }
     function submitForm() {

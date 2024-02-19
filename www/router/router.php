@@ -26,6 +26,10 @@ $router->get('/registration', function() {
     include APP_DIR . '/path/registration.php';
 });
 
+// $router->get('/requests', function() {
+//     include APP_DIR . '/path/requests.php';
+// });
+
 //Тут сделано на скорую руку, конечно можно реализовать это по красевее и более превельней
 $router->post('/api/to-do-list', function() use ($toDoList) {
     $data = json_decode(file_get_contents("php://input"), true);

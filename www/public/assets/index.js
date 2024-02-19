@@ -15,3 +15,20 @@ registration();
 
 import search from "./js/search.js";
 search();
+
+document.getElementById('dataForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+
+    fetch('http://localhost/requests', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerHTML = 'Результат: ' + data.result;
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+    });
+});

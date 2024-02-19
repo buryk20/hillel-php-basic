@@ -3,7 +3,7 @@
 namespace controllers;
 
 class AuthController extends Controller
-{0
+{
     public function login()
     {
         echo 'login';

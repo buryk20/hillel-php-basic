@@ -1,5 +1,5 @@
 <?php
-use controllers\AuthController;
+// use controllers\AuthController;
 class Router
 {
     private  array $routes = [];
@@ -40,6 +40,5 @@ class Router
         $controllerClass = "controllers\\$controller";
         $controllerObject = new $controllerClass();
         $controllerObject->$action();
-//        echo $controllerObject;
     }
 }

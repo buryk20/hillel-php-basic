@@ -34,6 +34,11 @@ $router->addRoute('/registration', [
     'post' => 'AuthController@auth'
 ]);
 
+$router->addRoute('/requests', [
+    'get' => 'ShowHello@hello',
+    'post' => 'Sum@sum'
+]);
+
 $router->processRoute(Request::getUrl(), Request::getMethod());
 
 

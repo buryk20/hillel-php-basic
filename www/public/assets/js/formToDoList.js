@@ -1,6 +1,8 @@
 let formToDoList = function () {
     let btnForm = document.querySelector('[data-btn-form]');
-    btnForm.addEventListener('click', submitForm);
+    if(!btnForm) {
+        btnForm.addEventListener('click', submitForm);
+    }
     function submitForm() {
         var xhr = new XMLHttpRequest();
 
@@ -11,9 +13,8 @@ let formToDoList = function () {
         xhr.setRequestHeader("Content-type", "application/json");
 
         // Получите значения полей формы
-        var title = document.getElementById("title").value;
-        var priority = document.getElementById("priority").value;
-
+        let title = document.getElementById("title").value;
+        let priority = document.getElementById("priority").value;
         // Преобразуйте данные в формат JSON и отправьте запрос
         xhr.send(JSON.stringify({ title: title, priority: priority }));
 

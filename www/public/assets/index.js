@@ -9,3 +9,9 @@ statusChange();
 
 import sortStatus from './js/sortStatus.js';
 sortStatus();
+
+import registration from './js/registration.js';
+registration();
+
+import search from "./js/search.js";
+search();

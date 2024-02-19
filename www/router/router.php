@@ -1,11 +1,17 @@
 <?php
 require_once APP_DIR . '/vendor/autoload.php';
 require_once APP_DIR . '/class/ToDoList.php';
+require_once APP_DIR . '/database/Connector.php';
+require_once APP_DIR . '/class/UserSearchHandler.php';
 
 $path = APP_DIR . '/file/toDoList.json';
 $toDoList = new ToDoList($path);
 
 $router = new \Bramus\Router\Router();
+
+//$router->addRouter('/test', [
+//
+//]);
 
 $router->get('/', function() {
     include APP_DIR . '/path/home.php';
@@ -96,5 +102,53 @@ $router->post('/api/to-do-list/sort', function() use ($toDoList) {
         echo json_encode($response);
     }
 });
+
+$router->post('/api/registration', function() {
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    $username = $data['username'] ?? null;
+    $email = $data['email'] ?? null;
+    $password = $data['password'] ?? null;
+
+    if (!isset($username, $email, $password)) {
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => 'Missing required fields']);
+        exit();
+    }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    try {
+        $pdo = Connector::getInstance();
+
+        // Перевірка, чи існує користувач з такою поштою
+        $stmt = $pdo->prepare("SELECT * FROM `users` WHERE email = ?");
+        $stmt->execute([$email]);
+        $existingUser = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($existingUser) {
+            // Якщо користувач з такою поштою вже існує, повертаємо відповідь про помилку на фронт
+            header('Content-Type: application/json');
+            echo json_encode(['success' => false, 'message' => 'User with this email already exists']);
+            exit();
+        }
+
+        // Якщо користувача з такою поштою не знайдено, реєструємо нового користувача
+        $stmt = $pdo->prepare("INSERT INTO `users` (name, email, password) VALUES (?, ?, ?)");
+        $stmt->execute([$username, $email, $hashedPassword]);
+
+        // Повертаємо успішну відповідь на фронт
+        header('Content-Type: application/json');
+        echo json_encode(['success' => true, 'message' => 'User registered successfully']);
+        exit();
+    } catch (PDOException $e) {
+        // В разі виникнення помилки повертаємо відповідь з помилкою на фронт
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => 'Failed to register user: ' . $e->getMessage()]);
+        exit();
+    }
+});
+
+$router->post('/api/registration/search', 'UserSearchHandler::handleSearchRequest');
 
 $router->run();

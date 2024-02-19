@@ -1,6 +1,14 @@
 <?php
 
 require_once '../system/constants.php';
+
+require_once APP_DIR . '/system/Request.php';
+require_once APP_DIR . '/system/Router.php';
+
+require_once CONTROLLERS_DIR . 'Controller.php';
+
+require_once APP_DIR . '/database/config.php';
+require_once APP_DIR . '/database/Connector.php';
 require_once APP_DIR . '/autoloader.php';
 require_once APP_DIR . '/class/FileWriter.php';
 require_once APP_DIR . '/class/ToDoList.php';
@@ -8,6 +16,7 @@ require_once APP_DIR . '/server/processing-request.php';
 require_once APP_DIR . '/router/router.php';
 require_once APP_DIR . '/class/bankAccount.php';
 require_once APP_DIR . '/class/Text.php';
+require_once APP_DIR . '/class/UserSearchHandler.php';
 
 require_once APP_DIR . '/class/abstract/Rectangle.php';
 require_once APP_DIR . '/class/abstract/Circle.php';
@@ -17,6 +26,18 @@ require_once APP_DIR . '/class/treats/DooSec.php';
 
 $linkLogs = APP_DIR . '/logs/logs.txt';
 $linkFile = APP_DIR . '/file/toDoList.json';
+
+$router = new Router();
+
+$router->addRoute('/registration', [
+    'get' => 'AuthController@login',
+    'post' => 'AuthController@auth'
+]);
+
+$router->processRoute(Request::getUrl(), Request::getMethod());
+
+
+
 //Создаю экземпляр класса, что бы отлавливать логи и записывать их в фаил
 try {
     $fileWriter = new FileWriter($linkLogs);
@@ -30,7 +51,17 @@ try {
     $fileWriter->writeToFileWith('Error: ' . $e->getMessage() . '. ' . 'Path to the file: ' . $linkFile);
 }
 
+
+
 $bankAccount = new BankAccount('123', '500');
+
+
+//try {
+//    $dsn = 'mysql:host=mysql;port=3306;dbname=sandbox;charset=utf8mb4';
+//    $database = new PDO($dsn, 'root', 'uVi4N46556NvEB6pniSgg4AP');
+//} catch (PDOException $exception) {
+//    $exception->getMessage();
+//}
 
 // try {
 //     $bankAccount->refill(-100);
